@@ -22,6 +22,11 @@ public class PersonService{
     }
 
 
+    public Person getPersonInfo(String name) {
+        var age = generator.getAgeByName(name);
+        var gender = generator.getGenderByName(name);
+        var nationalities = generator.getNationalitiesByName(name);
 
-
+        return new Person(name,age, gender, nationalities);
+    }
 }
