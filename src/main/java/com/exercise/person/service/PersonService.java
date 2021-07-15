@@ -10,9 +10,7 @@ public class PersonService{
     @Autowired
     private Generator generator;
 
-
     public Person getPersonInfo() {
-
         var name = generator.getRandomName();
          var age = generator.getAgeByName(name);
          var gender = generator.getGenderByName(name);
@@ -20,7 +18,6 @@ public class PersonService{
 
         return new Person(name,age, gender, nationalities);
     }
-
 
     public Person getPersonInfo(String name) {
         var age = generator.getAgeByName(name);

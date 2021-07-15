@@ -10,7 +10,4 @@ public class Age{
         return age;
     }
 
-
-
-
 }

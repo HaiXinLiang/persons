@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 @Repository
 public class Generator {
 
+    RestTemplate restTemplate = new RestTemplate();
+
     public String getRandomName() {
         var faker = new Faker();
         return faker.name().firstName();
@@ -24,7 +26,6 @@ public class Generator {
 
     public int getAgeByName(String name) {
         var uriAge = "https://api.agify.io/?name=" + name;
-        var restTemplate = new RestTemplate();
         var resultForAge = restTemplate.getForObject(uriAge, Age.class);
         assert resultForAge != null;
         return resultForAge.getAge();
@@ -32,7 +33,6 @@ public class Generator {
 
     public String getGenderByName(String name) {
         var uriGender = "https://api.genderize.io?name=" + name;
-        var restTemplate = new RestTemplate();
         var resultForGender = restTemplate.getForObject(uriGender, Gender.class);
         assert resultForGender != null;
         return resultForGender.getGender();
@@ -40,7 +40,6 @@ public class Generator {
 
     public List<Nationality> getNationalitiesByName(String name) {
         var uriNationality = "https://api.nationalize.io/?name=" + name;
-        var restTemplate = new RestTemplate();
         var resultForNationality = restTemplate.getForObject(uriNationality, Countries.class);
         assert resultForNationality != null;
         var countries = resultForNationality.getCountry().stream().map(Country::getCountry_id).collect(Collectors.toList());
